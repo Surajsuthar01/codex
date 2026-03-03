@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Deploy to Apache') {
+            steps {
+                sh '''
+                sudo rsync -av --delete ./ /var/www/html/
+                '''
+            }
+        }
+    }
+}
