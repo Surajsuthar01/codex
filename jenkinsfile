@@ -2,18 +2,9 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Clone') {
+        stage('Deploy') {
             steps {
-                checkout scm
-            }
-        }
-
-        stage('Deploy to Apache') {
-            steps {
-                sh '''
-                 rsync -av --delete ./ /var/www/html/
-                '''
+                sh 'rsync -av --delete ./ /var/www/html/'
             }
         }
     }
